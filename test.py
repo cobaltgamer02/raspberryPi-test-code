@@ -10,7 +10,6 @@ spi = spidev.SpiDev(0, 0)
 spi.max_speed_hz = 1000000
 
 def read_adc(channel):
-    # ... Your ADC reading logic here ...
     # Construct a three-byte message for SPI communication
     # First byte (MSB)
     #   - Start bit (1)
@@ -27,7 +26,7 @@ def read_adc(channel):
     # (discard the first byte since it's the start bit and channel selection)
     digital_value = (adc_data[1] & 0x1F) << 8 | adc_data[2]
 
-    return digital_value  # Placeholder, fill with your ADC logic
+    return digital_value  
 
 # --- Load your pre-trained models ---
 linear_model = joblib.load('LR_OV_Sym_Inst.pkl')
@@ -106,4 +105,3 @@ with open(filename, 'w', newline='') as csvfile:
         if user_input.lower() != 'yes':
             print("Exiting script...")
             break  # Exit the outer loop
-        # ... (no changes here) ...
